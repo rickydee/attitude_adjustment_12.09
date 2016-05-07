@@ -1,0 +1,58 @@
+--- a/arch/mips/ath79/Kconfig
++++ b/arch/mips/ath79/Kconfig
+@@ -336,6 +336,29 @@ config ATH79_MACH_RB750
+ 	select ATH79_ROUTERBOOT
+ 	select RLE_DECOMPRESS
+ 
++config ATH79_MACH_RB91X
++	bool "MikroTik RouterBOARD 91X support"
++	select SOC_AR934X
++	select ATH79_DEV_ETH
++	select ATH79_DEV_SPI
++	select ATH79_DEV_WMAC
++	select ATH79_DEV_USB
++	select ATH79_ROUTERBOOT
++	select RLE_DECOMPRESS
++
++config ATH79_MACH_RBMAP
++        bool "Mikrotik RouterBOARD mAP2n support"
++        select SOC_AR933X
++        select ATH79_DEV_AP9X_PCI if PCI
++        select ATH79_DEV_ETH
++        select ATH79_DEV_GPIO_BUTTONS
++        select ATH79_DEV_LEDS_GPIO
++        select ATH79_DEV_M25P80
++        select ATH79_DEV_USB
++        select ATH79_DEV_WMAC
++	select ATH79_ROUTERBOOT
++	select RLE_DECOMPRESS
++
+ config ATH79_MACH_RB2011
+ 	bool "MikroTik RouterBOARD 2011 support"
+ 	select SOC_AR934x
+
+--- a/arch/mips/ath79/machtypes.h
++++ b/arch/mips/ath79/machtypes.h
+@@ -61,6 +61,10 @@ enum ath79_mach_type {
+ 	ATH79_MACH_RB_450,		/* MikroTik RouterBOARD 450 */
+ 	ATH79_MACH_RB_493,		/* Mikrotik RouterBOARD 493/493AH */
+ 	ATH79_MACH_RB_493G,		/* Mikrotik RouterBOARD 493G */
++	ATH79_MACH_RB_711GR100,		/* Mikrotik RouterBOARD 911/912 boards */
++	ATH79_MACH_RB_GROOVE,	
++	ATH79_MACH_RB_MAP,              /* MikroTik RouterBOARD mAP2n */
++	ATH79_MACH_RB_CAP,              /* Mikrotik cAP */	
+ 	ATH79_MACH_RB_750,		/* MikroTik RouterBOARD 750 */
+ 	ATH79_MACH_RB_750G_R3,		/* MikroTik RouterBOARD 750GL */
+ 	ATH79_MACH_RB_751,		/* MikroTik RouterBOARD 751 */
+
+--- a/arch/mips/ath79/Makefile
++++ b/arch/mips/ath79/Makefile
+@@ -69,6 +69,8 @@ obj-$(CONFIG_ATH79_MACH_PB44)		+= mach-p
+ obj-$(CONFIG_ATH79_MACH_PB92)		+= mach-pb92.o
+ obj-$(CONFIG_ATH79_MACH_RB4XX)		+= mach-rb4xx.o
+ obj-$(CONFIG_ATH79_MACH_RB750)		+= mach-rb750.o
++obj-$(CONFIG_ATH79_MACH_RB91X)		+= mach-rb91x.o
++obj-$(CONFIG_ATH79_MACH_RBMAP)		+= mach-rbmap.o
+ obj-$(CONFIG_ATH79_MACH_RB2011)		+= mach-rb2011.o
+ obj-$(CONFIG_ATH79_MACH_RW2458N)	+= mach-rw2458n.o
+ obj-$(CONFIG_ATH79_MACH_TEW_632BRP)	+= mach-tew-632brp.o

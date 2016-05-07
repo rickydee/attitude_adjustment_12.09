@@ -193,6 +193,7 @@ define Image/BuildKernel
 	$(call MkuImage,gzip,,$(KDIR)/vmlinux.bin.gz,$(UIMAGE)-gzip.bin)
 	$(call MkuImage,lzma,,$(KDIR)/vmlinux.bin.lzma,$(UIMAGE)-lzma.bin)
 	cp $(KDIR)/loader-generic.elf $(VMLINUX)-lzma.elf
+	$(STAGING_DIR_HOST)/bin/kernel2minor -k $(KDIR)/loader-generic.elf -r $(VMLINUX)-lzma.minor-yaffs2 -e
 	-mkdir -p $(KDIR_TMP)
 	$(call Image/Build/Initramfs)
 endef

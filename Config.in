@@ -14,6 +14,13 @@ source "target/Config.in"
 
 menu "Target Images"
 
+	config TARGET_KERNEL_MINOR_YAFFS2
+		bool "kernel.minor-yaffs2"
+		default n
+		depends on TARGET_ar71xx_mikrotik
+		help
+		 Build a Mikrotik Nor Yaffs2 kernel filesystem for RouterBoot
+
 	menuconfig TARGET_ROOTFS_INITRAMFS
 		bool "ramdisk"
 		default y if USES_INITRAMFS
